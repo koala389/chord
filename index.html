@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title id="song-title">Loading...</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <script>
+    let songTitle = '主祢知道';
+    let baseKey = 'F#';
+    const originalSong = `
+Intro
+| D#m7 - - A#m/C#  | Badd9 | F#maj9 | Badd9 - Bm6 - |
+Verse 1
+  F#  C#/F  D#m7     
+軟弱 主祢知道         
+ Bmaj7   A#m7      D#m7
+ 疲乏    主已知道
+  G#m7       C#7        A#m7    D#7(b9)
+更知道 我  渴慕  我心裡 那  愛慕
+G#m7      Bm6    F#    B/C#
+這一切 祢  都知道
+`;
+
+    // Call after everything loads
+    function initControls() {
+      document.title = songTitle;
+      document.getElementById("song-title-label").textContent = songTitle;
+      renderKeyButtons();
+      renderShiftButtons();
+      transposeAndDisplay(0);
+    }
+  </script>
+
+  <script src="script.js"></script>
+
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        setTimeout(() => {
+          if (typeof initControls === 'function') initControls();
+        }, 0);
+      });
+  </script>
+
+</body>
+</html>
